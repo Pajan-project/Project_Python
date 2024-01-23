@@ -1,5 +1,37 @@
 from . import operasi
 
+def console_delete():
+    console_view()
+    while(True):
+        print("Silahkan masukkan no buku yang akan di update :")
+        no_buku = int(input("Masukkan No Buku :"))
+        data_buku = operasi.read(INDEX=no_buku)
+        
+        if data_buku:
+            data_break = data_buku.split(',')
+            pk = data_break[0]
+            date_add = data_break [1]
+            judul = data_break [2]
+            penulis = data_break [3]
+            tahun = data_break [4][:-1]
+
+            print("\n"+"="*100)
+            print("Silahkan pilih data yang akan dihapus: ")
+            print(f"1. Judul\t: {judul:.40}")
+            print(f"2. penulis\t: {penulis:.40}")
+            print(f"3. Tahun\t: {tahun:4}")
+        
+            is_done = input("Apakah yakin dihapus datanya ? (y/n)")
+            if is_done == "y" or is_done == "Y":
+                operasi.delete(no_buku)
+                break
+        else:
+            print("Data buku tidak valid, Silahkan masukkan lagi : ")
+            
+    print("Data Berhasil di hapus")
+
+
+
 def console_update():
     console_view()
     while(True):
@@ -47,8 +79,9 @@ def console_update():
         print("DATA BARU ANDA")
         print(f"1. Judul\t: {judul:.40}")
         print(f"2. penulis\t: {penulis:.40}")
-        print(f"3. Tahun\t: {tahun:4}")        
-        is_done = input("Apakah sudah selesai (y/n) ?")
+        print(f"3. Tahun\t: {tahun:4}")   
+
+        is_done = input("Apakah sudah selesai updatenya wahai user (y/n) ?")
         if is_done == "y" or is_done == "Y":
             break
         

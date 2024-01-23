@@ -1,6 +1,28 @@
 import time
 from . import database
 from . import util
+import os
+
+def delete(no_buku):
+    try:
+        with open(database.DBNAME,'r') as file:
+            counter = 0
+
+            while(True):
+                content = file.readline()
+                if len(content) == 0:
+                    break
+                elif counter == no_buku - 1:
+                    pass
+                else:
+                    with open("data_temp.txt",'a',encoding="utf-8") as temp_file:
+                        temp_file.write(content)
+                counter += 1
+    except:
+        print("database error")
+    
+    os.rename("data_temp.txt",database.DBNAME)
+
 
 def update(no_buku,pk,date_add,tahun,judul,penulis):
     templatedata = database.DBTEMPLATE.copy()

@@ -28,7 +28,7 @@ if __name__ == "__main__":
             case "1": CRUD.console_view()
             case "2": CRUD.console_create()
             case "3": CRUD.console_update()
-            case "4": print("Delete Data")
+            case "4": CRUD.console_delete()
             
         
         is_done = input("Apakah sudah selesai (y/n) ?")
